@@ -3,8 +3,8 @@
 #how much space the use,
 #and the sizes and names of the 3 largest files
 
-echo -n "There are "
-find ~/Pictures -type f | wc -l
+echo -n There are `find ~/Pictures -type f | wc -l`
+
 echo " files in the ~/Pictures directory"
 #from joseph 
 #echo -n "There are"

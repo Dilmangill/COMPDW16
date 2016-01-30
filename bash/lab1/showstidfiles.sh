@@ -3,12 +3,15 @@
 echo "setuid files in /usr"
 echo "===================="
 find /usr -perm -4000 -type f -ls
+
 cat <<EOF
-setgid files in /usr
+
+Setgid files in /usr
 ====================
 EOF
 
-echo ""
-echo "setguid files in /usr"
-echo "====================="
-find /usr -perm -2000 -type f -ls | awk '{printf "$11 $3 $6"}' 
+#echo ""
+#echo "setguid files in /usr"
+#echo "====================="
+find /usr -perm -2000 -type f -ls 
+#find /usr -perm -2000 -type f -ls | awk '{printf "$11 $3 $6"}' 
