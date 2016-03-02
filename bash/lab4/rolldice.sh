@@ -10,41 +10,54 @@
 sum=0
 # Main
 ######
-# Process the command line, checking for count and sides
+#Help function
+#this function is used to get help
+
+help_function() {
+	cat <<-EOF
+		This will roll a dice
+		To get a value
+		And will sum up all values
+
+		Optional Arguments
+		-c for a count of dice, will be between 1-5
+		-s for a number of sides of a dice , will be between 4-20
+
+		Example:
+	./filename -d 4 # it will specify the number of dices which will be 4
+	./filename -s 5 # number of sides will be 5
+EOF
+}
 while [ $# -gt 0 ]; do
-case "$1" in
--c )
-if [[ "$2" =~ ^[1-5]$ ]]; then
-count=$2
-else
-echo "I wanted a number after the -c, from 1 to 5. CYA Bozo!"
-exit 2
+	case "$1" in
+	-h | --help ) #help function execute
+	help_function
+	exit 0
+	;;
+	-c )
+	if [[ "$2" =~ ^[1-5]$ ]]; then
+		count=$2
+	else
+		echo "I wanted a number after the -c, from 1 to 5. CYA Bozo!"
+		exit 2
+	fi
+	;;
+	-s )
+	if [[ "$2" =~ ^[1-9][0-9]*$ ]]; then
+		if [ "$2" -ge 4 -a "$2" -le 20 ]; then
+			sides=$2
+		else
+			echo "I wanted a number after the -s, from 4 to 20. CYA Bozo!"
+		exit 2
+	fi
 fi
-;;
--s )
-if [[ "$2" =~ ^[1-9][0-9]*$ ]]; then
-if [ "$2" -ge 4 -a "$2" -le 20 ]; then
-sides=$2
-else
-echo "I wanted a number after the -s, from 4 to 20. CYA Bozo!"
-exit 2
-fi
-fi
-;;
-esac
-shift
+	;;
+*)
+	echo "type -h or --help toget help"
+		;;
+	esac
+	shift
 done
-if [ -z "$count" ]; then
-# ask the user how many dice they want to roll
-read -p "How many dice[1-5, default is 2]? " numdice
-# use what they gave us if it is a number from 1-5
-if [[ "$numdice" =~ ^[1-5]$ ]]; then
-count=$numdice
-else
-count=2
-echo "Using a default of 2 since you aren't very helpful."
-fi
-fi
 if [ -z "$sides" ]; then
 # ask the user how many sides these dice have
 read -p "How many sides[4-20, default is 6]? " numsides
