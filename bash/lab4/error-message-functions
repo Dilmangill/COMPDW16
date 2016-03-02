@@ -1,0 +1,9 @@
+#### Functions
+# This function will send an error message to stderr
+# Usage:
+# error-message ["some text to print to stderr"]
+#
+# This function will send a message to stderr and exit with a failure status
+# Usage:
+# error-exit ["some text to print" [exit-status]]
+#
