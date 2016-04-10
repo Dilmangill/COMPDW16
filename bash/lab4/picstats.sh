@@ -34,7 +34,7 @@ error-message () {
 }
 while [ $# -gt 0 ]; do
 	case "$1" in
-	-h | --help ) # to execute help function
+	-h | --help ) # to run  help function
 		help_function
 	exit 0
 	;;
@@ -51,7 +51,7 @@ done
 
 
 #for the count of number of files in given directory
-		number=$( find $dir -type f | wc -l)
+		number=$( find $dir -type f | wc -l )
 		echo "Number of files in $dir are $number"
 
 if [ $number -gt 0 ]; then

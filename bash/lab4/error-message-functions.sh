@@ -1,0 +1,17 @@
+#!/bin/bash
+#### Functions
+# it will send an error message to stderr
+# Usage
+# error-message ["Sends out some text to print to stderr"]
+# This function will send a message to stderr and exit with a failure status
+# MAIN
+error-message () {
+        echo "error-message-to-STDERR $filename: $1" >&2
+}
+
+
+while [ $# -gt 0 ]; do
+        error-message "$1" "2"
+        shift
+done
+
